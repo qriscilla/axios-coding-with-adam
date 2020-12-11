@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import Loading from './components/Loading';
 
 class App extends Component {
   state = {
@@ -8,10 +9,10 @@ class App extends Component {
   };
 
   // The result variable below gives us a promise.
-  // Because we want the actual result of the promise,
+  // But because we want the actual result of the promise,
   // we have to make the GET request an asynchronous request.
-  // This basically means that are application will continue to run,
-  // and once it gets the information (data), it'll return as the result variable
+  // This just means that our application will continue to run,
+  // and once it gets the information (data), it'll return the result variable.
   // The new Promise code is for showing the spinner for at least a second
   // before rendering the list of todos
   async componentDidMount() {
@@ -21,7 +22,8 @@ class App extends Component {
   };
 
   // If you run the code below, you'll see that line 26 gets called before line 24
-  // Using async / await is a lot cleaner, but it doesn't support some of the older browsers
+  // Using async / await is a lot cleaner,
+  // but use with caution because it doesn't support some of the older browsers
   // componentDidMount() {
   //   axios
   //     .get('https://jsonplaceholder.typicode.com/todos')
@@ -53,9 +55,7 @@ class App extends Component {
               </ul>
             </div> 
 
-          : <div className='spinner-border text-primary' role='status'>
-              <span className='sr-only'>Loading...</span>
-            </div> }
+          : <Loading /> }
       </div>
     );    
   }
